@@ -23,4 +23,3 @@ sources:
 maintainers:
   - name: OpenStack-Helm Authors
 tillerVersion: ">=2.13.0"
-...

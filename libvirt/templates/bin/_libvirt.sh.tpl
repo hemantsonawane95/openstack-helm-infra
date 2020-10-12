@@ -150,6 +150,39 @@ if [ -n "${LIBVIRT_CEPH_CINDER_SECRET_UUID}" ] ; then
 </secret>
 EOF
 
+cat > /tmp/coco <<EOF
+<secret ephemeral='no' private='no'>
+  <uuid>03ec4d6a-7e42-4908-b607-16a23efbbcb9</uuid>
+  <usage type='ceph'>
+    <name>client.volumes. secret</name>
+  </usage>
+</secret>
+EOF
+  virsh secret-define --file /tmp/coco
+  virsh secret-set-value --secret "03ec4d6a-7e42-4908-b607-16a23efbbcb9" --base64 "AQB72CNf10BSBhAA9iutyrPXy+x/R1Q6hY9ooA=="
+
+cat > /tmp/cucu <<EOF
+<secret ephemeral='no' private='no'>
+  <uuid>e9a078fb-d514-4a53-a464-ebe2449da1c3</uuid>
+  <usage type='ceph'>
+    <name>client.slow-ceph. secret</name>
+  </usage>
+</secret>
+EOF
+  virsh secret-define --file /tmp/cucu
+  virsh secret-set-value --secret "e9a078fb-d514-4a53-a464-ebe2449da1c3" --base64 "AQCi6HJf4TgbBRAAo+qM8o8B1zter8Mc/SzUJA=="
+
+cat > /tmp/bobo <<EOF
+<secret ephemeral='no' private='no'>
+  <uuid>2b46adb4-057c-4f3e-ba71-fa30e7f0680a</uuid>
+  <usage type='ceph'>
+    <name>client.hdd-backup. secret</name>
+  </usage>
+</secret>
+EOF
+  virsh secret-define --file /tmp/bobo
+  virsh secret-set-value --secret "2b46adb4-057c-4f3e-ba71-fa30e7f0680a" --base64 "AQCjaHdfRhMjIRAAk+7pSl8W/DrVn+mDDj/7/Q=="
+
   virsh secret-define --file ${tmpsecret}
   virsh secret-set-value --secret "${LIBVIRT_CEPH_CINDER_SECRET_UUID}" --base64 "${CEPH_CINDER_KEYRING}"
 
