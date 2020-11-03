@@ -18,7 +18,7 @@ set -ex
 COMMAND="${@:-start}"
 
 function start () {
-  exec python3 /usr/local/bin/exporter/main.py
+  exec python /usr/local/bin/exporter/main.py
 }
 
 function stop () {
