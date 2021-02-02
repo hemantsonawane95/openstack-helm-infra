@@ -379,7 +379,7 @@ function osd_disk_prepare {
 
   if [[ ${CEPH_DISK_USED} -eq 1 ]]; then
     CLI_OPTS="${CLI_OPTS} --data ${OSD_DEVICE}"
-    (ceph-volume simple scan --force ${OSD_DEVICE}$(sgdisk --print ${OSD_DEVICE} | grep "F800" | awk '{print $1}') || echo "test") || echo "It is OK"
+    ceph-volume simple scan --force ${OSD_DEVICE}$(sgdisk --print ${OSD_DEVICE} | grep "F800" | awk '{print $1}')
   elif [[ ${CEPH_LVM_PREPARE} -eq 1 ]] || [[ ${DISK_ZAPPED} -eq 1 ]]; then
     udev_settle
     vg_name=$(get_vg_name_from_device ${OSD_DEVICE})
@@ -445,7 +445,7 @@ function osd_disk_prepare {
   fi
 
   if [[ CEPH_LVM_PREPARE -eq 1 ]]; then
-    locked ceph-volume lvm -v prepare ${CLI_OPTS} || echo "it is ok"
+    locked ceph-volume lvm -v prepare ${CLI_OPTS}
     udev_settle
   fi
 }

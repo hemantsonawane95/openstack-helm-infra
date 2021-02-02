@@ -91,6 +91,7 @@ pod:
               - SYS_CHROOT
           readOnlyRootFilesystem: true
         vswitchd:
+          privileged: true
           runAsUser: 0
           capabilities:
             add:

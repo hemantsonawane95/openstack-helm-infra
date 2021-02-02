@@ -363,9 +363,9 @@ conf:
           - service
     receivers:
       - name: 'slack-tcpro'
-        slack_configs:
-        - api_url: https://hooks.slack.com/services/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
-          channel: '#cloud-tcpro-mon'
+        opsgenie_configs:
+        - api_key: d423bba0-924b-4650-97af-50d62caa7407
+          api_url: "https://api.eu.opsgenie.com/"
       - name: 'alerta'
         webhook_configs:
         - send_resolved: true
