@@ -548,15 +548,20 @@ conf:
           scrape_timeout: 40s
           external_labels:
             prometheus_host: {{$promHost}}
-            cluster: "cloud.tcpro.cz"
+            cluster: "scp.safedx.eu"
         scrape_configs:
           - job_name: ceph_metrics
             static_configs:
-              - targets: ['10.11.2.234:9283']
-              - targets: ['10.11.2.235:9283']
-              - targets: ['10.11.2.214:9283']
-              - targets: ['10.11.2.215:9283']
-              - targets: ['10.11.2.216:9283']
+              - targets: ['192.168.110.54:9283']
+              - targets: ['192.168.110.55:9283']
+              - targets: ['192.168.110.31:9283']
+              - targets: ['192.168.110.32:9283']
+              - targets: ['192.168.110.33:9283']
+              - targets: ['192.168.110.34:9283']
+              - targets: ['192.168.110.35:9283']
+              - targets: ['192.168.110.51:9283']
+              - targets: ['192.168.110.52:9283']
+              - targets: ['192.168.110.53:9283']
           - job_name: kubelet
             scheme: https
             # This TLS & bearer token file config is used to connect to the actual scrape
