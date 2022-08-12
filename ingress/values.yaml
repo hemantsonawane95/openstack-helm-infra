@@ -132,6 +132,9 @@ labels:
     node_selector_value: enabled
 
 network:
+  node_port:
+    enabled: false
+    port: 30080
   host_namespace: false
   vip:
     manage: false

@@ -90,7 +90,7 @@ conf:
     user: "nova"
     group: "kvm"
   kubernetes:
-    cgroup: "kubepods"
+    cgroup: "cgroup-limit-docker/kubepods"
 
 pod:
   security_context:

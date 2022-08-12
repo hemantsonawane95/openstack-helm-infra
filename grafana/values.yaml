@@ -464,7 +464,15 @@ conf:
           secureJsonData:
             basicAuthPassword: {{ .Values.endpoints.monitoring.auth.user.password }}
           url: {{ tuple "monitoring" "internal" "api" . | include "helm-toolkit.endpoints.keystone_endpoint_uri_lookup" }}
+        - name: alertmanager
+          type: camptocamp-prometheus-alertmanager-datasource
+          access: proxy
+          orgId: 1
+          editable: true
+          basicAuth: true
   grafana:
+    plugins:
+      - grafana-piechart-panel
     analytics:
       reporting_enabled: false
       check_for_updates: false

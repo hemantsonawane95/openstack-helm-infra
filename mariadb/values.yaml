@@ -38,6 +38,10 @@ images:
       - dep_check
       - image_repo_sync
 
+network:
+  node_port:
+    enabled: false
+    port: 30774
 labels:
   server:
     node_selector_key: openstack-control-plane

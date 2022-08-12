@@ -237,6 +237,9 @@ monitoring:
       scrape: true
 
 network:
+  node_port:
+    enabled: false
+    port: 30774
   management:
     ingress:
       public: true

@@ -94,12 +94,12 @@ if [ 0"$hp_count" -gt 0 ]; then
   # if we have at least 1 free page.
   num_free_pages="$(cat /sys/kernel/mm/hugepages/hugepages-${default_hp_kb}kB/free_hugepages | tr -cd '[:digit:]')"
   echo "INFO: '$num_free_pages' free hugepages of size ${default_hp_kb}kB"
-  if [ 0"$num_free_pages" -gt 0 ]; then
-    (fallocate -o0 -l "$default_hp_kb" /dev/hugepages/foo && rm /dev/hugepages/foo) || \
-      (echo "ERROR: fallocate failed test at /dev/hugepages with size ${default_hp_kb}kB"
-       rm /dev/hugepages/foo
-       exit 1)
-  fi
+  #if [ 0"$num_free_pages" -gt 0 ]; then
+  #  (fallocate -o0 -l "$default_hp_kb" /dev/hugepages/foo && rm /dev/hugepages/foo) || \
+  #    (echo "ERROR: fallocate failed test at /dev/hugepages with size ${default_hp_kb}kB"
+  #     rm /dev/hugepages/foo
+  #     exit 1)
+  #fi
 fi
 
 if [ -n "${LIBVIRT_CEPH_CINDER_SECRET_UUID}" ] ; then
@@ -152,14 +152,14 @@ EOF
 
 cat > /tmp/coco <<EOF
 <secret ephemeral='no' private='no'>
-  <uuid>0b7f4386-db54-442f-a91f-68c3bb743c16</uuid>
+  <uuid>781ea7d0-f6eb-4fea-a446-e470dc17261f</uuid>
   <usage type='ceph'>
-    <name>client.fast-safedx. secret</name>
+    <name>client.fast-o2. secret</name>
   </usage>
 </secret>
 EOF
   virsh secret-define --file /tmp/coco
-  virsh secret-set-value --secret "0b7f4386-db54-442f-a91f-68c3bb743c16" --base64 "AQC6KRlgCD06FhAAmLRjeMWhRDmtjcpqYy/YTg=="
+  virsh secret-set-value --secret "781ea7d0-f6eb-4fea-a446-e470dc17261f" --base64 "AQDf+/RiziZTNxAAjvDRY39Emhw+YUektRQ4oA=="
 
 cat > /tmp/cucu <<EOF
 <secret ephemeral='no' private='no'>

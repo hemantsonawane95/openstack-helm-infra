@@ -20,14 +20,20 @@ kind: Service
 metadata:
   name: {{ tuple "oslo_messaging" "internal" . | include "helm-toolkit.endpoints.hostname_short_endpoint_lookup" }}
 spec:
-  clusterIP: None
+  #clusterIP: None
   ports:
     - port: {{ tuple "oslo_messaging" "internal" "amqp" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
       name: amqp
+      {{- if .Values.network.node_port.enabled }}
+      nodePort: {{ .Values.network.node_port.port }}
+      {{- end }}
     - port: {{ add (tuple "oslo_messaging" "internal" "amqp" . | include "helm-toolkit.endpoints.endpoint_port_lookup") 20000 }}
       name: clustering
     - port: {{ tuple "oslo_messaging" "internal" "http" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
       name: http
+  {{- if .Values.network.node_port.enabled }}
+  type: NodePort
+  {{- end }}
   selector:
 {{ tuple $envAll "rabbitmq" "server" | include "helm-toolkit.snippets.kubernetes_metadata_labels" | indent 4 }}
 {{ end }}

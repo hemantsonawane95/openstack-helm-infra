@@ -221,6 +221,9 @@ conf:
       mon_data_avail_warn: 15
       log_file: /dev/stdout
       mon_cluster_log_file: /dev/stdout
+      mon_max_pg_per_osd: 500
+      osd_max_pg_per_osd_hard_ratio: 100
+      mon_pg_warn_max_object_skew: 10000
     osd:
       osd_mkfs_type: xfs
       osd_mkfs_options_xfs: -f -i size=2048

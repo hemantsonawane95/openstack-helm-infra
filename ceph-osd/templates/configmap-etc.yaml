@@ -39,6 +39,10 @@ kind: ConfigMap
 metadata:
   name: {{ $configMapName }}
 data:
+  lvm.conf: |
+    global {
+      use_lvmetad = 0
+    }
   ceph.conf: |
 {{ include "helm-toolkit.utils.to_ini" .Values.conf.ceph | indent 4 }}
   storage.json: |

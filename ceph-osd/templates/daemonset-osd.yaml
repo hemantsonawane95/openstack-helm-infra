@@ -232,6 +232,10 @@ spec:
               subPath: ceph.conf
               readOnly: true
             - name: ceph-osd-etc
+              mountPath: /etc/lvm/lvm.conf
+              subPath: lvm.conf
+              readOnly: true
+            - name: ceph-osd-etc
               mountPath: /etc/ceph/storage.json
               subPath: storage.json
               readOnly: true

@@ -286,7 +286,7 @@ conf:
       repeat_interval: 3h
       # A default receiver
       # receiver: team-X-mails
-      receiver: slack-safedx
+      receiver: slack-o2-nfv1
       # All the above attributes are inherited by all child routes and can
       # overwritten on each.
       # The child route trees.
@@ -294,11 +294,11 @@ conf:
         # This routes performs a regular expression match on alert
         # labels to catch alerts that are related to a list of
         # services.
-        - receiver: slack-safedx
+        - receiver: slack-o2-nfv1
           continue: true
         - match_re:
             service: ^(foo1|foo2|baz)$
-          receiver: slack-safedx
+          receiver: slack-o2-nfv1
           # The service has a sub-route for critical alerts, any alerts
           # that do not match, i.e. severity != critical, fall-back to the
           # parent node and are sent to 'team-X-mails'
@@ -345,9 +345,9 @@ conf:
           - cluster
           - service
     receivers:
-      - name: 'slack-safedx'
+      - name: 'slack-o2-nfv1'
         opsgenie_configs:
-        - api_key: fff8d111-7880-41f2-93f9-8eedc485918a
+        - api_key: 543b2768-ac8c-454c-a394-559316c32dbc
           api_url: "https://api.eu.opsgenie.com/"
       - name: 'team-X-mails'
         email_configs:

@@ -25,6 +25,9 @@ metadata:
 {{- end }}
   name: {{ tuple "ingress" "internal" . | include "helm-toolkit.endpoints.hostname_short_endpoint_lookup" }}
 spec:
+  {{- if .Values.network.node_port.enabled }}
+  type: NodePort
+  {{- end }}
 {{- if and .Values.network.host_namespace .Values.network.vip.manage }}
   clusterIP: None
 {{- end }}
@@ -33,6 +36,9 @@ spec:
     port: {{ tuple "ingress" "internal" "http" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
     protocol: TCP
     targetPort: {{ tuple "ingress" "internal" "http" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
+    {{- if .Values.network.node_port.enabled }}
+    nodePort: {{ .Values.network.node_port.port }} 
+    {{- end }}
   - name: https
     port: {{ tuple "ingress" "internal" "https" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
     protocol: TCP

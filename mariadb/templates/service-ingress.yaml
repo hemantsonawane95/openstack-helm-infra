@@ -26,6 +26,12 @@ spec:
     - name: mysql
       port: {{ tuple "oslo_db" "internal" "mysql" . | include "helm-toolkit.endpoints.endpoint_port_lookup" }}
       protocol: TCP
+      {{- if .Values.network.node_port.enabled }}
+      nodePort: {{ .Values.network.node_port.port }} 
+      {{- end }}
+  {{- if .Values.network.node_port.enabled }}
+  type: NodePort
+  {{- end }}
   selector:
 {{ tuple $envAll "mariadb" "ingress" | include "helm-toolkit.snippets.kubernetes_metadata_labels" | indent 4 }}
 {{- end }}
